@@ -68,7 +68,10 @@ export const RegistrationForm: React.FC = () => {
     setServerError(null);
 
     try {
-      const response = await fetch('http://localhost:5001/api/enquiry', {
+      // Use environment variable for API URL, fallback to localhost for local dev if not set
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+      
+      const response = await fetch(`${apiUrl}/api/enquiry`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
